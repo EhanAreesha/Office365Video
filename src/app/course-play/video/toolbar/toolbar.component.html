@@ -1,0 +1,13 @@
+<div id="playerToolBar">
+  <a id="playBtn" class="btn btn-default" (click)="videoService.playVideo()">
+    <i [ngClass]="{'fa-play' : !videoService.isPlaying, 'fa-puase' : videoService.isPlaying}" class="fa"></i>
+  </a>
+  <a id="muteBtn" class="btn btn-default" (click)="videoService.muteVideo()">
+    <i [ngClass]="{'fa-volume-off': videoService.ivideoService.isMuted, 'fa-volume-up': !videoService.ivideoService.isMuted}"
+      class="fa"></i>
+  </a>
+  <span id="videoTime">{{videoService.ivideoService.currentTime | timedisplay}} /
+    {{videoService.ivideoService.totalTime |
+    timedisplay}}</span>
+  <a id="fsBtn" class="btn btn-default pull-right" (click)="videoService.fullScreen()"><i class="fa fa-expand"></i></a>
+</div>

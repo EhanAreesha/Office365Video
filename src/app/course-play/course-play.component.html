@@ -1,0 +1,74 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-9 px-0">
+            <div class="content-section play-course-mid">
+                <app-video [hidden]="icoursePlayComponent.isActivePart">Loading Video Player...</app-video>
+                <app-quiz [hidden]="!icoursePlayComponent.isActivePart">Loading Quiz...</app-quiz>
+            </div>
+        </div>
+        <div class="col-md-3 px-0" style="background-color:#F4F4F4;">
+            <div class="text-center bg-info py-4 text-white">
+                <h3>{{courseData.title}}</h3>
+                <p id="durationId" class="mb-0">{{courseData.duration}}</p>
+            </div>
+            <div class="line"></div>
+            <div *ngFor="let chapter of chapterData; let i = index;">
+                <div class="content-menu-section my-1" (click)="isOpen(chapter.title, chapter.show)">
+                    <div class="w-15 pl-3">
+                        <div class="text-round bg-info float-left">
+                            <p>{{i+1}}</p>
+                        </div>
+                    </div>
+                    <div class="w-50 float-left pl-3 ">
+                        <p class="mb-0 chapter-title">{{chapter.title}}</p>
+                        <p class="mb-0">{{chapter.duration}}</p>
+                    </div>
+                    <div class="w-20 float-right pl-3 pr-3">
+                        <img [id]="chapter.chapterId" class="content-menu-icon float-right" src="./assets/images/straight.png"
+                            alt="">
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div *ngFor="let material of chapter.materials; let i = index;">
+                    <div *ngIf="chapter.show && material.type == 'Video'" class="content-menu-section my-1" (click)="playVideo(material)">
+                        <div class="w-25 pl-3">
+                            <img [id]="material.materialId" class="content-menu-icon float-left" src="./assets/images/video.png"
+                                alt="">
+                        </div>
+                        <div class="w-75 float-right pr-2 pt-3">
+                            <h5 class="material-title float-left">{{material.title}}</h5>
+                            <p class="mb-0 float-right">{{material.duration}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="chapter.show" class="content-menu-section my-1" (click)="setQuiz(chapter.chapterId)">
+                    <div class="w-25 pl-3">
+                        <img [id]="chapter['Quiz']['quizid']" class="content-menu-icon float-left" src="./assets/images/circle.png"
+                            alt="">
+                    </div>
+                    <div class="w-75 float-right pr-2 pt-3">
+                        <h5 class="material-title float-left">{{chapter['Quiz'].title}} -
+                            {{chapter['Quiz']['questions'].length}} questions</h5>
+                    </div>
+                </div>
+
+                <div class="line"></div>
+            </div>
+
+            <div class="content-menu-section my-1" (click)="setFinalQuiz()">
+                <div class="w-15 pl-3">
+                    <div class="text-round bg-info float-left">
+                        <p>{{courseData.chapters.length+1}}</p>
+                    </div>
+                </div>
+                <div class="w-60 pr-2 pt-3">
+                    <h5 class=" pl-3 chapter-title float-left">{{courseData.Quiz.title}} -
+                        {{courseData.Quiz.questions.length}} questions</h5>
+                </div>
+                <div class="w-20 float-right mt-0 pr-4">
+                    <img id="finalQId" class="content-menu-icon float-right finalQ-img" src="" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

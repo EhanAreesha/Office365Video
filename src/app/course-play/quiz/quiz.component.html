@@ -1,0 +1,28 @@
+<div class="row no-gutters" style="background-color:#F4F4F4;">
+  <div class="col-sm-12 p-5">
+    <div id="quizModal">
+      <div>
+        <h4 class="pb-3 font-weight-bold">Question No: {{quizService.iquizService.questionSequenceNo}} -
+          {{quizService.iquizService.currentTitle}}</h4>
+        <img class="pb-3" *ngIf="!base64Image" [src]="quizService.iquizService.imageBase64" alt="Question Image" />
+        <form [formGroup]="form">
+          <div class="question-input pb-3" *ngFor="let opt of quizService.iquizService.options; let i = index;">
+            {{i+1 | numTochar }} <input (change)="quizService.handleChange(opt)" type="radio" formControlName="qanswer"
+              [value]="opt">
+            {{opt}}
+          </div>
+        </form>
+      </div>
+      <div>
+        <h4 [hidden]="!quizService.iquizService.isAnswered" class="pb-3 font-weight-bold">Result:
+          {{quizService.iquizService.answerStatus}}</h4>
+        <h4 [hidden]="!quizService.iquizService.isAnswered" class="pb-3 font-weight-bold">Correct Answer:
+          {{quizService.iquizService.rightAnswer}}</h4>
+        <input [disabled]="!quizService.iquizService.enableButton" (click)="quizService.submitAnswer()" type="button"
+          class="btn btn-info float-left mr-3" value="Submit Answer">
+        <input [disabled]="!quizService.iquizService.hasNextQuestion" (click)="quizService.nextQuizSetup()" class="btn btn-danger float-left"
+          type="button" value="Next Question">
+      </div>
+    </div>
+  </div>
+</div>

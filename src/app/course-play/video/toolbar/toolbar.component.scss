@@ -1,0 +1,16 @@
+#playerToolBar {
+    background-color: #464545;
+}
+#playerToolBar a {
+    font-size: 1.2rem;
+    color: #b8b8bb;
+}
+#playerToolBar .btn {
+    border-radius:0px;
+    width:50px;
+}
+#playerToolBar .btn:focus {
+    border: none;
+    box-shadow: 0;
+    outline: 0 none;
+}

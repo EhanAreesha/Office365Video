@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div id="videoPlayer" (mouseup)="videoService.dragStop($event)" (mousemove)="videoService.dragMove($event)"
+      (mouseleave)="videoService.dragStop($event)">
+      <div class="embed-responsive embed-responsive-16by9">
+        <video id="videoDisplay" (click)="videoService.playVideo()" src="{{videoService.ivideoService.currentPath}}"
+          width="50%" height="50%" class="embed-responsive-item"></video>
+        <div id="playButton" [hidden]="videoService.ivideoService.isPlaying" (click)="videoService.playVideo()"><i
+            class="fa fa-play"></i></div>
+        <div id="videoTitle" [hidden]="videoService.ivideoService.isPlaying">{{videoService.ivideoService.currentTitle}}</div>
+      </div>
+      <video-progess></video-progess>
+      <video-toolbar></video-toolbar>
+    </div>
+  </div>
+</div>
+<br />
+<br />
+<br />
